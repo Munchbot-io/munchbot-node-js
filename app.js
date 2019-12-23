@@ -19,10 +19,13 @@
  * 4. Add your PAGE_ACCESS_TOKEN to your environment vars
  *
  */
-
 'use strict';
+const dotenv = require('dotenv');
+dotenv.config();
+
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 // Imports dependencies and set up http server
+
 const 
   request = require('request'),
   express = require('express'),
@@ -103,6 +106,9 @@ app.get('/webhook', (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
   
+  // console.log('THIS IS A RECEIVED DATA', received_message);
+  // console.log(received_message.text);
+
   // Checks if the message contains text
   if (received_message.text) {    
     // Create the payload for a basic text message, which
@@ -162,12 +168,14 @@ function handlePostback(sender_psid, received_postback) {
 
 function callSendAPI(sender_psid, response) {
   // Construct the message body
+
   let request_body = {
     "recipient": {
       "id": sender_psid
     },
     "message": response
   }
+  console.log(request_body);
 
   // Send the HTTP request to the Messenger Platform
   request({
@@ -177,7 +185,7 @@ function callSendAPI(sender_psid, response) {
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
-      console.log('message sent!')
+      console.log('message sent!');
     } else {
       console.error("Unable to send message:" + err);
     }

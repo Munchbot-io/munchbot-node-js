@@ -20,7 +20,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.13.4",
     "nodemon": "^1.19.4",
-    "request": "^2.72.0"
+    "now": "^16.7.0",
+    "request": "^2.88.0"
   },
   "engines": {
     "node": "10.16.2"

@@ -1,16 +1,19 @@
 {
   "name": "munchbot",
-  "version": "1.0.0",
-  "description": "An example webhook for Facebook Messenger quick start tutorial.",
+  "version": "1.1.0",
+  "description": "An API for Munchbot",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fbsamples/messenger-platform-samples.git"
+    "url": "https://github.com/Munchbot-io/munchbot-node-js.git"
   },
-  "author": "Facebook",
+  "keywords": [
+    "API"
+  ],
+  "author": "Will Kim <rlagmlckd@gmail.com> (https://withoutwax.me)",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.0",

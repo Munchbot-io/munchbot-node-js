@@ -51,18 +51,18 @@ app.post('/webhook', (req, res) => {
       console.log(webhook_event);
 
 
-      // Get the sender PSID
-      let sender_psid = webhook_event.sender.id;
-      console.log('Sender ID: ' + sender_psid);
+      // // Get the sender PSID
+      // let sender_psid = webhook_event.sender.id;
+      // console.log('Sender ID: ' + sender_psid);
 
-      // Check if the event is a message or postback and
-      // pass the event to the appropriate handler function
-      if (webhook_event.message) {
-        handleMessage(sender_psid, webhook_event.message);        
-      } else if (webhook_event.postback) {
+      // // Check if the event is a message or postback and
+      // // pass the event to the appropriate handler function
+      // if (webhook_event.message) {
+      //   handleMessage(sender_psid, webhook_event.message);        
+      // } else if (webhook_event.postback) {
         
-        handlePostback(sender_psid, webhook_event.postback);
-      }
+      //   handlePostback(sender_psid, webhook_event.postback);
+      // }
       
     });
     // Return a '200 OK' response to all events
@@ -78,7 +78,7 @@ app.post('/webhook', (req, res) => {
 // Accepts GET requests at the /webhook endpoint
 app.get('/webhook', (req, res) => {
   
-  /** UPDATE YOUR VERIFY TOKEN **/
+  /** TODO: UPDATE YOUR VERIFY TOKEN **/
   const VERIFY_TOKEN = "munchbot";
   
   // Parse params from the webhook verification request

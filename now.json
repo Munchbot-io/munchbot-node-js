@@ -17,8 +17,5 @@
         "src": "/.*",
         "dest": "/app.js"
       }
-    ],
-    "env": {
-        "PAGE_ACCESS_TOKEN": "@page-access-token"
-    }
+    ]
 }

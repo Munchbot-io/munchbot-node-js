@@ -26,6 +26,7 @@ dotenv.config();
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 // Imports dependencies and set up http server
 const request = require('request');
+const rp = require('request-promise');
 
 const 
   express = require('express'),
@@ -110,7 +111,7 @@ app.get('/webhook', (req, res) => {
   }
 });
 
-async function handleMessage(sender_psid, received_message) {
+function handleMessage(sender_psid, received_message) {
   let response;
 
   // Checks if the message contains text
@@ -152,7 +153,7 @@ async function handleMessage(sender_psid, received_message) {
 
   }
   // Send the response message
-  await callSendAPI(sender_psid, response);
+  callSendAPI(sender_psid, response);
 }
 
 function handlePostback(sender_psid, received_postback) {
@@ -171,7 +172,7 @@ function handlePostback(sender_psid, received_postback) {
   callSendAPI(sender_psid, response);
 }
 
-async function callSendAPI(sender_psid, response) {
+function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
     "recipient": {
@@ -181,7 +182,7 @@ async function callSendAPI(sender_psid, response) {
   }
 
   console.log('Call Send API');
-
+  
   // Send the HTTP request to the Messenger Platform
   request({
     "url": "https://graph.facebook.com/v2.6/me/messages",
@@ -195,5 +196,7 @@ async function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   });
+
   console.log('Respond Request - End');
+  // setTimeout(console.log('Waiting for request'), 1000);
 }

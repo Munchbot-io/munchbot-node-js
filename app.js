@@ -32,8 +32,28 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
+// const router = express.Router();
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 3000, () => console.log('webhook is listening'));
+
+// router.get('/testApi', (req, res) => {
+//   console.log('The API is working');
+//   console.log('Request:', req);
+//   console.log('Response:', res);
+// });
+
+// app.use('./api', router);
+// app.get('./test',  (req, res) => {
+//   console.log('Test End point');
+//   console.log('Request:', req);
+//   console.log('Response:', res);
+// });
+app.get('/', function (req, res) {
+  console.log('API is working');
+  res.send('This is Munchbot API');
+});
+
 
 // Accepts POST requests at /webhook endpoint
 app.post('/webhook', (req, res) => {  
@@ -187,4 +207,9 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   }); 
+}
+
+module.exports = async (req, res) => {
+  const { body } = req
+  res.end(`Hello ${body.name}, you just parsed the request body!`)
 }

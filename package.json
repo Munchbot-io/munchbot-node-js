@@ -4,7 +4,7 @@
   "description": "An API for Munchbot",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,10 @@
     "body-parser": "^1.15.0",
     "dotenv": "^8.2.0",
     "express": "^4.13.4",
-    "nodemon": "^1.19.4",
-    "now": "^16.7.0",
+    "now": "^16.7.3",
     "request": "^2.88.0"
   },
-  "engines": {
-    "node": "10.16.2"
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

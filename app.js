@@ -110,7 +110,7 @@ app.get('/webhook', (req, res) => {
   }
 });
 
-function handleMessage(sender_psid, received_message) {
+async function handleMessage(sender_psid, received_message) {
   let response;
 
   // Checks if the message contains text
@@ -152,7 +152,7 @@ function handleMessage(sender_psid, received_message) {
 
   }
   // Send the response message
-  callSendAPI(sender_psid, response);    
+  await callSendAPI(sender_psid, response);
 }
 
 function handlePostback(sender_psid, received_postback) {
@@ -171,7 +171,7 @@ function handlePostback(sender_psid, received_postback) {
   callSendAPI(sender_psid, response);
 }
 
-function callSendAPI(sender_psid, response) {
+async function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
     "recipient": {
@@ -183,7 +183,7 @@ function callSendAPI(sender_psid, response) {
   console.log('Call Send API');
 
   // Send the HTTP request to the Messenger Platform
-  setTimeout(request({
+  request({
     "url": "https://graph.facebook.com/v2.6/me/messages",
     "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
@@ -194,7 +194,6 @@ function callSendAPI(sender_psid, response) {
     } else {
       console.error("Unable to send message:" + err);
     }
-  })
-  , 9000);
+  });
   console.log('Respond Request - End');
 }

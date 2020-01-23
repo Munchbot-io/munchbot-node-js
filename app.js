@@ -183,7 +183,7 @@ function callSendAPI(sender_psid, response) {
   console.log('Call Send API');
 
   // Send the HTTP request to the Messenger Platform
-  request({
+  setTimeout(request({
     "url": "https://graph.facebook.com/v2.6/me/messages",
     "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
@@ -194,6 +194,7 @@ function callSendAPI(sender_psid, response) {
     } else {
       console.error("Unable to send message:" + err);
     }
-  });
+  })
+  , 9000);
   console.log('Respond Request - End');
 }
